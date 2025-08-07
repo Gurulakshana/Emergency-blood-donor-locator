@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Donor - Blood Donor Finder</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .results { display:block; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:12px; margin-top:12px; overflow-y: auto;}
+    .card { border:1px solid #ddd; padding:12px; border-radius:6px; background:#fff; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .card h4 { margin:0 0 6px 0; }
+    .small { font-size:0.9rem; color:#555; }
+    .request-form { margin-top:10px; border-top:1px dashed #eee; padding-top:10px; }
+    .msg { padding:10px; background:#f0fff4; border:1px solid #cdeed6; color:#064; border-radius:6px; margin-bottom:12px; }
+    .err { background:#fff6f6; border:1px solid #f5c2c2; color:#900; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Emergency Blood Donor Locator</h1>
+    <nav>
+      <a href="/register">Register Donor</a>
+      <a href="/find">Find Donor</a>
+    </nav>
+  </header>
+
+  <section id="section">
+    <div>
+      <img src="/images/find.jpg" alt="Find Donor" class="banner" style="width:100%;max-height:240px;object-fit:cover;">
+    </div>
+
+    <div class="container">
+      <h2>Find a Blood Donor</h2><br>
+
+      <% if (reqQuery && reqQuery.sent === '1') { %>
+        <div class="msg">Request email sent to the donor. They should contact the needer soon.</div>
+      <% } else if (reqQuery && reqQuery.sent === '0' && reqQuery.error) { %>
+        <div class="msg err">Error sending email: <%= reqQuery.error %></div>
+      <% } %>
+      <br>
+      <form method="GET" action="/find" >
+        <select name="blood_group" required >
+          <option value="">Select Blood Group</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+
+        <input type="text" name="location" placeholder="City/Location" required>
+        <button type="submit" >Search</button>
+        <br>
+      </form>
+      
+      <% if (donors && donors.length > 0) { %>
+        <hr>
+        <div class="results">
+          <br>
+          <h2>Available Donors:</h2><br>
+          <% donors.forEach(donor => { %>
+            <div class="card">
+              <h4><%= donor.name %> (<%= donor.blood_group %>)</h4>
+              <p class="small">Email: <%= donor.email %></p>
+              <p class="small">Phone: <%= donor.phone %></p>
+              <p class="small">Location: <%= donor.location %></p>
+              <form class="request-form" method="POST" action="/request" onsubmit="return confirm('Send request to <%= donor.name %>?');">
+                <input type="hidden" name="donor_id" value="<%= donor.id %>">
+                <div style="display:flex;gap:8px;margin-bottom:6px;">
+                  <input type="text" name="needer_name" placeholder="Your name" required>
+                  <input type="tel" name="needer_phone" placeholder="Your phone" required>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <button type="submit">Send Request</button>
+                </div>
+              </form>
+            </div>
+          <% }) %>
+        </div>
+      <% } else if (donors) { %>
+        <p style="color: red; text-align: center;">No donors found for this search.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Blood Donor Finder</p>
+  </footer>
+</body>
+</html>

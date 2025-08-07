@@ -1,0 +1,135 @@
+:root {
+  --primary: #b42f2b;
+  --light-primary: #f9d6d5;
+
+  background-color: white;
+  --text-dark: #3b3b3b;
+  --text-light: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-dark);
+}
+
+header {
+  background: var(--primary);
+  color: var(--text-light);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  font-size: large;
+  transition: color 0.3s ease;
+  
+}
+
+nav a:hover {
+  color: #ffeaea;
+}
+
+.container {
+  margin: 2.5rem auto;
+  width: 650px;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.banner {
+  border-radius: 12px;
+  margin: 5rem;
+  width: 500px;
+  position:sticky;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+input, select, button {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--primary);
+  color: var(--text-light);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #c94744;
+}
+
+.results {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--light-primary);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.card h4 {
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--primary);
+  color: var(--text-light);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+}
+#section{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  
+  gap: 10px;
+}
+.notify-btn {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.notify-btn:hover {
+  background-color: #c9302c;
+}

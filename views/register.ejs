@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Donor - Blood Donor Finder</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Emergency Blood Donor Locator</h1>
+    <nav>
+      <a href="/register">Register Donor</a>
+      <a href="/find">Find Donor</a>
+    </nav>
+  </header>
+    <section id="section">
+    <div>
+    <img src="/images/find1.jpg" alt="Donate Blood" class="banner">
+</div>
+    <div class="container">
+    <form method="POST" action="/register">
+        <h2>Register as a Blood Donor</h2><br>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <select name="blood_group" required>
+        <option value="">Select Blood Group</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>O+</option>
+        <option>O-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+      </select>
+      <input type="text" name="location" placeholder="City/Location" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+    </section>
+
+  <footer>
+    <p>&copy; 2025 Blood Donor Finder</p>
+  </footer>
+</body>
+</html>
